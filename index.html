@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DSA Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="header-left">
+        <span class="logo">&lt;DSA/&gt;</span>
+        <div>
+          <h1>Problem Tracker</h1>
+          <p class="tagline">grind. track. repeat.</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-num" id="total">0</span><span class="stat-label">solved</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num streak" id="streak">0🔥</span><span class="stat-label">day streak</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num easy-col" id="easy-count">0</span><span class="stat-label">easy</span></div>
+        <div class="stat"><span class="stat-num med-col" id="med-count">0</span><span class="stat-label">medium</span></div>
+        <div class="stat"><span class="stat-num hard-col" id="hard-count">0</span><span class="stat-label">hard</span></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="form-section">
+        <h2>Log a problem</h2>
+        <div class="form-grid">
+          <input type="text" id="prob-name" placeholder="Problem name (e.g. Two Sum)" />
+          <input type="text" id="prob-link" placeholder="LeetCode / GFG link (optional)" />
+          <select id="prob-topic">
+            <option value="">Topic</option>
+            <option>Arrays</option>
+            <option>Strings</option>
+            <option>Linked List</option>
+            <option>Stack / Queue</option>
+            <option>Trees</option>
+            <option>Graphs</option>
+            <option>DP</option>
+            <option>Recursion</option>
+            <option>Sorting</option>
+            <option>Binary Search</option>
+            <option>Hashing</option>
+            <option>Greedy</option>
+            <option>Other</option>
+          </select>
+          <div class="diff-group">
+            <button class="diff-btn easy" data-diff="Easy" onclick="selectDiff(this)">Easy</button>
+            <button class="diff-btn medium" data-diff="Medium" onclick="selectDiff(this)">Medium</button>
+            <button class="diff-btn hard" data-diff="Hard" onclick="selectDiff(this)">Hard</button>
+          </div>
+        </div>
+        <textarea id="prob-notes" placeholder="Notes (approach, mistakes, key insight...)"></textarea>
+        <button class="add-btn" onclick="addProblem()">+ Add Problem</button>
+      </section>
+
+      <section class="list-section">
+        <div class="list-header">
+          <h2>Problems <span class="prob-count" id="prob-count"></span></h2>
+          <div class="filters">
+            <button class="filter-btn active" onclick="filter('All', this)">All</button>
+            <button class="filter-btn" onclick="filter('Easy', this)">Easy</button>
+            <button class="filter-btn" onclick="filter('Medium', this)">Medium</button>
+            <button class="filter-btn" onclick="filter('Hard', this)">Hard</button>
+            <input type="text" id="search" placeholder="Search..." oninput="renderList()" />
+          </div>
+        </div>
+        <div id="problem-list"></div>
+        <div id="empty-state" class="empty-state">
+          <span class="empty-icon">{'}'}</span>
+          <p>No problems yet. Add your first one above.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
